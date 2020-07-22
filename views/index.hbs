@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            
+            <div class="page-header">
+                <h1>URI Shortner</h1>
+            </div>
+
+            {{#if alert}}
+            <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <strong>Holy guacamole!</strong> Submitted URI is not valid. Please check and try again.
+            </div>
+            {{/if}}
+
+            <form method="POST">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="fullUri" class="sr-only">Make Tiny URI</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="fullUri" placeholder="Make Tiny URI..." 
+                                {{#if alert}}value="{{invalidURI}}"{{/if}}
+                                >
+                                <span class="input-group-btn">
+                                    <button class="btn btn-success" type="submit">Submit!</button>
+                                </span>
+                            </div><!-- /input-group -->
+                        </div>
+                    </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+            </form>
+
+            <br/>
+
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>URI</th>
+                                <th>Short</th>
+                                <th>Clicks</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each docs}}
+                            <tr>
+                                <td><a href="{{this.full}}" target="_blank" rel="noopener noreferrer">{{this.full}}</a></td>
+                                <td><a href="/{{this.short}}" target="_blank" rel="noopener noreferrer">{{this.short}}</a></td>
+                                <td>{{this.clicks}}</td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
