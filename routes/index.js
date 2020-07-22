@@ -20,6 +20,7 @@ router.get('/', async function (req, res, next) {
 
 /* POST home page. */
 router.post('/', async function (req, res, next) {
+  if (!req.body.fullUri) return res.redirect('/');
 
   if (validUrl.isUri(req.body.fullUri)) {
     await shortURI.create({ full: req.body.fullUri })
